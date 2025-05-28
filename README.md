@@ -10,8 +10,8 @@ Developer: Leo Yao
 - Django (Python) with Django Ninja framework
 - PostgreSQL database
 - Docker for containerization
-- Celery for asynchronous task processing
-- Redis for message broker and caching
+- (Plan) Celery for asynchronous task processing
+- (Plan) Redis for message broker and caching
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ Before you begin, ensure you have the following installed:
 
 ### 1. Clone the repository
 ```bash
-git clone <repository-url>
+git clone git@github.com:Ylieo816/Talentlabs.git
 cd Leo_JobPlatform
 ```
 
@@ -33,7 +33,7 @@ docker compose up
 ```
 This will start the backend server and PostgreSQL database.
 
-### 3. Running Tests
+### 3. Running Local Tests for Backend only
 To run the test suite, use the following command:
 ```bash
 docker compose run --rm web pytest tests/tests.py -v
@@ -41,16 +41,13 @@ docker compose run --rm web pytest tests/tests.py -v
 
 The test suite includes:
 - Job creation
-- Job listing with filters
+- Job listing: search all with filters, sorting, pagination
 - Job updating
 - Job deletion
-- Pagination
-- Sorting
-- Search functionality
 
 ## API Documentation
 
-Once the application is running, you can access the interactive API documentation at:
+Once the application is running locally, you can access the interactive API documentation at:
 ```
 http://localhost:8000/api/docs
 ```
@@ -61,9 +58,9 @@ This documentation provides:
 - Interactive testing interface
 - Example requests and responses
 
-## Asynchronous Processing
+## Asynchronous Processing Plan
 
-The project uses Celery and Celery Beat for handling asynchronous tasks:
+The project will use Celery and Celery Beat for handling asynchronous tasks in the future:
 
 ### Scheduled Tasks
 - Job status updates based on posting and expiration dates
@@ -114,9 +111,8 @@ backend/
 Currently, the project has completed the backend implementation with the following features:
 - RESTful API endpoints for job management
 - Database models and schemas
-- Comprehensive test coverage
+- Comprehensive test coverage for backend APIs
 - Docker configuration for easy deployment
-- Asynchronous task processing setup
-- Cloud deployment configuration
+
 
 Frontend development is planned for future implementation.
