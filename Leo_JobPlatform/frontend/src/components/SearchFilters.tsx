@@ -33,7 +33,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilterChange }) => {
   const handleSearch = () => {
     const params = new URLSearchParams(location.search);
     
-    // 更新所有過濾條件
+    // update all filters
     Object.entries(filters).forEach(([key, value]) => {
       if (value) {
         params.set(key === 'orderBy' ? 'order_by' : key, value);
@@ -42,13 +42,13 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilterChange }) => {
       }
     });
     
-    // 重置頁碼到第一頁
+    // reset page to the first page
     params.set('page', '1');
     navigate(`${location.pathname}?${params.toString()}`);
   };
 
   const handleReset = () => {
-    // 重置所有過濾條件到默認值
+    // reset all filters to the default values
     setFilters({
       search: '',
       status: '',
@@ -57,7 +57,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({ onFilterChange }) => {
       orderBy: 'posting_date'
     });
     
-    // 清空 URL 參數，只保留頁碼
+    // clear URL parameters, only keep the page number
     const params = new URLSearchParams();
     params.set('page', '1');
     navigate(`${location.pathname}?${params.toString()}`);

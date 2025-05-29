@@ -4,10 +4,10 @@ from datetime import date, timedelta
 import random
 
 class Command(BaseCommand):
-    help = '生成20筆測試職位資料'
+    help = 'Generate 120 test job data'
 
     def handle(self, *args, **kwargs):
-        # 公司列表
+        # Company Choices
         companies = [
             "Tech Solutions Inc.",
             "Digital Innovations",
@@ -21,7 +21,7 @@ class Command(BaseCommand):
             "Smart Systems"
         ]
 
-        # 職位列表
+        # Position Choices
         job_titles = [
             "Senior Python Developer",
             "Frontend Developer",
@@ -35,7 +35,7 @@ class Command(BaseCommand):
             "Product Manager"
         ]
 
-        # 地點列表
+        # Location Choices
         locations = [
             "Taipei, Taiwan",
             "New Taipei, Taiwan",
@@ -44,7 +44,7 @@ class Command(BaseCommand):
             "Hsinchu, Taiwan"
         ]
 
-        # 技能列表
+        # Skill Choices
         all_skills = [
             "Python", "JavaScript", "React", "Vue", "Angular",
             "Django", "Flask", "Node.js", "TypeScript", "Java",
@@ -53,7 +53,7 @@ class Command(BaseCommand):
             "Git", "REST API", "GraphQL", "Microservices"
         ]
 
-        # 薪資範圍
+        # Salary Range Choices
         salary_ranges = [
             "60,000 - 90,000 TWD",
             "80,000 - 120,000 TWD",
@@ -62,17 +62,17 @@ class Command(BaseCommand):
             "150,000 - 200,000 TWD"
         ]
 
-        # 生成20筆資料
-        for i in range(20):
-            # 隨機選擇發布日期（過去30天到未來30天）
-            posting_date = date.today() + timedelta(days=random.randint(-30, 30))
-            # 隨機選擇過期日期（發布日期後30-90天）
+        # Generate 120 test data
+        for i in range(120):
+            # Randomly select posting date (60 days ago to 60 days from now)
+            posting_date = date.today() + timedelta(days=random.randint(-60, 60))
+            # Randomly select expiration date (30-90 days after posting date)
             expiration_date = posting_date + timedelta(days=random.randint(30, 90))
             
-            # 隨機選擇2-4個技能
+            # Randomly select 2-4 skills
             required_skills = random.sample(all_skills, random.randint(2, 4))
             
-            # 創建職位
+            # Create job
             job = Job.objects.create(
                 title=random.choice(job_titles),
                 company=random.choice(companies),

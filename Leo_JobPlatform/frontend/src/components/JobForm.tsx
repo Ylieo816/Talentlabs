@@ -94,7 +94,7 @@ const JobForm: React.FC = () => {
       }
       setSuccess(true);
       if (!id) {
-        // 如果是創建新職位，清空表單
+        // Clear the form data if a new job is created
         setFormData({
           title: '',
           company: '',

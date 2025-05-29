@@ -35,3 +35,10 @@ class JobQueryParams(Schema):
     order_by: Optional[str] = "posting_date"
     page: int = 1
     page_size: int = 10
+
+class PaginatedResponse(Schema):
+    items: List[JobSchema]
+    total: int
+    page: int
+    page_size: int
+    total_pages: int
