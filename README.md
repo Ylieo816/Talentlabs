@@ -4,6 +4,26 @@ This project is developed for TalentLabs Coding Assignment: Job Platform.
 
 Developer: Leo Yao
 
+## Project Structure
+
+```
+Leo_JobPlatform/
+├── backend/               # Django + API + PostgreSQL
+│   ├── jobs/
+│   │   ├── apis.py        # API endpoints
+│   │   ├── models.py      # Database models
+│   │   └── schemas.py     # Pydantic schemas
+│   ├── tests/
+│   │   └── tests.py       # Test cases
+│   └── job_platform/      # Django project settings
+├── frontend/              # React + Vite
+│   ├── src/components/
+│   │   ├── JobDetail.tsx  # Show specific job
+│   │   ├── JobForm.tsx    # User input for new job post
+│   │   └── JobList.tsx    # List all jobs
+└── docker-compose.yml     # Manage Docker package for fullstack
+```
+
 ## Features and Tech Stack
 
 ### Backend (focus)
@@ -13,7 +33,7 @@ Developer: Leo Yao
 - (Future Plan) Celery for asynchronous task processing
 - (Future Plan) Redis for message broker and caching
 
-### Frontend (React)
+### Frontend (React + Typescript)
 - **Job Listing Page** (`http://localhost:3000/`)
   - View all available job postings
   - Search jobs by keywords
@@ -107,76 +127,6 @@ This documentation provides:
 - Interactive testing interface
 - Example requests and responses
 
-## Asynchronous Processing Future Plan
-
-The project will use Celery and Celery Beat for handling asynchronous tasks in the future:
-
-### Scheduled Tasks
-- Job status updates based on posting and expiration dates
-- Automatic status transitions (scheduled → active → expired)
-- Regular data cleanup and maintenance
-
-### Background Jobs
-- Email notifications for job status changes
-- Data aggregation and reporting
-- Cache invalidation and updates
-
-## Cloud Deployment (AWS)
-
-The application is designed further to be deployed on AWS with the following services:
-
-### Infrastructure
-- **ECS (Elastic Container Service)**: For running Docker containers and Celery
-- **RDS**: For PostgreSQL database
-- **ElastiCache**: For Redis message broker and caching
-- **S3**: For static file storage
-- **SQS**: For async message queue
-
-### Monitoring and Logging
-- **CloudWatch**: For monitoring and logging
-- **X-Ray**: For request tracing
-- **CloudTrail**: For API activity logging
-
-### Security
-- **IAM**: For access management
-- **VPC**: For network isolation
-- **ACM**: For SSL/TLS certificates
-
-## Project Structure
-
-```
-Leo_JobPlatform/
-├── backend/               # Django + API + PostgreSQL
-│   ├── jobs/
-│   │   ├── apis.py        # API endpoints
-│   │   ├── models.py      # Database models
-│   │   └── schemas.py     # Pydantic schemas
-│   ├── tests/
-│   │   └── tests.py       # Test cases
-│   └── job_platform/      # Django project settings
-├── frontend/              # React + Vite
-│   ├── src/components/
-│   │   ├── JobDetail.tsx  # Show specific job
-│   │   ├── JobForm.tsx    # User input for new job post
-│   │   └── JobList.tsx    # List all jobs
-└── docker-compose.yml     # Manage Docker package for fullstack
-```
-
-## Development Status
-
-Currently, the project has completed the implementation with the following features:
-Backend:
-- RESTful API endpoints for job management
-- Database models and schemas
-- Comprehensive test coverage for backend APIs
-- Docker configuration for easy deployment
-
-Frontend:
-- Built with React and TypeScript
-- Modern UI with responsive design
-- State management with React Hooks
-- Routing with React Router
-- HTTP requests with Axios
 
 ## AI Usage
 
@@ -207,3 +157,41 @@ Cursor was used to assist in the following areas:
 - **Error Handling**: Suggestions for better error handling and debugging.
 
 By leveraging these AI tools, the development process was accelerated, allowing for a focus on implementing core features from 0 to 1 and ensuring a robust application structure.
+
+
+## Future Plan
+
+### Asynchronous Processing 
+
+The project will use Celery and Celery Beat for handling asynchronous tasks in the future:
+
+#### Scheduled Tasks
+- Job status updates based on posting and expiration dates
+- Automatic status transitions (scheduled → active → expired)
+- Regular data cleanup and maintenance
+
+#### Background Jobs
+- Email notifications for job status changes
+- Data aggregation and reporting
+- Cache invalidation and updates
+
+### Cloud Deployment (AWS)
+
+The application is designed further to be deployed on AWS with the following services:
+
+#### Infrastructure
+- **ECS (Elastic Container Service)**: For running Docker containers and Celery
+- **RDS**: For PostgreSQL database
+- **ElastiCache**: For Redis message broker and caching
+- **S3**: For static file storage
+- **SQS**: For async message queue
+
+#### Monitoring and Logging
+- **CloudWatch**: For monitoring and logging
+- **X-Ray**: For request tracing
+- **CloudTrail**: For API activity logging
+
+#### Security
+- **IAM**: For access management
+- **VPC**: For network isolation
+- **ACM**: For SSL/TLS certificates
