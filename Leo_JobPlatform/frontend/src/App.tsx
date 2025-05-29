@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import JobList from './components/JobList';
 import JobForm from './components/JobForm';
 import JobDetail from './components/JobDetail';
@@ -33,7 +33,7 @@ function App() {
             <Route path="/" element={
               <>
                 <SearchFilters onFilterChange={handleFilterChange} />
-                <JobList {...filters} />
+                <JobList />
               </>
             } />
             <Route path="/jobs/:id" element={<JobDetail />} />

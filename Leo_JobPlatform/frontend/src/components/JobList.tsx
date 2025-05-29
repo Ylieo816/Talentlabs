@@ -15,31 +15,23 @@ interface Job {
   status: string;
 }
 
-interface JobListProps {
-  search?: string;
-  status?: string;
-  locationFilter?: string;
-  company?: string;
-  orderBy?: string;
-  page?: number;
-  pageSize?: number;
-}
-
-const JobList: React.FC<JobListProps> = ({
-  search = '',
-  status = '',
-  locationFilter = '',
-  company = '',
-  orderBy = 'posting_date',
-  page = 1,
-  pageSize = 10
-}) => {
+const JobList: React.FC = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [totalPages, setTotalPages] = useState(1);
   const navigate = useNavigate();
-  const routerLocation = useLocation();
+  const location = useLocation();
+
+  // 從 URL 參數中獲取過濾條件
+  const searchParams = new URLSearchParams(location.search);
+  const search = searchParams.get('search') || '';
+  const status = searchParams.get('status') || '';
+  const locationFilter = searchParams.get('location') || '';
+  const company = searchParams.get('company') || '';
+  const orderBy = searchParams.get('order_by') || 'posting_date';
+  const page = parseInt(searchParams.get('page') || '1');
+  const pageSize = parseInt(searchParams.get('page_size') || '10');
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -71,9 +63,9 @@ const JobList: React.FC<JobListProps> = ({
   }, [search, status, locationFilter, company, orderBy, page, pageSize]);
 
   const handlePageChange = (newPage: number) => {
-    const params = new URLSearchParams(routerLocation.search);
+    const params = new URLSearchParams(location.search);
     params.set('page', newPage.toString());
-    navigate(`${routerLocation.pathname}?${params.toString()}`);
+    navigate(`${location.pathname}?${params.toString()}`);
   };
 
   if (loading) return <div>Loading...</div>;

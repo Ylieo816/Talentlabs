@@ -71,6 +71,12 @@ The test suite includes:
 - Job updating
 - Job deletion
 
+### 4. Auto-generate 20 User data
+To run the generated test data, use the following command:
+```bash
+docker compose run --rm backend python manage.py generate_test_data
+```
+
 ## API Documentation
 
 Once the application is running locally, you can access the interactive API documentation at:
